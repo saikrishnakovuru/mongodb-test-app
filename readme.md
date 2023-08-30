@@ -31,6 +31,7 @@ modify the URI having <password> with correct password(saikrishna).
 
 ## Collection vs Document
 > Collection is a group of mongoDB documents, It's analogous to a table in relational databases.
+
 >A document is a basic unit of data in MongoDB. It's similar to a row in a relational database, but MongoDB documents are stored in a flexible, JSON-like format known as BSON (Binary JSON).
 --> we can assume Collecation as a table and Document as a row in that table.
         
