@@ -18,4 +18,8 @@ exists within a specific database and can hold a set of documents that represent
 ```java
 @Document(collection = "JobPost");
 ```
+
+To find the URI added in application.properties go to mongo atlas
+login with mail id -> database-> under database click connect -> select drivers and URL will ge given
+modify the URI having <password> with correct password(saikrishna).
         
