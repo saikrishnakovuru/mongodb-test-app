@@ -15,5 +15,4 @@ public class Post {
   private String desc;
   private int exp;
   private String[] techs;
-
 }
