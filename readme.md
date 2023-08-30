@@ -21,7 +21,11 @@ Notes on MongoDB
 > In the same scenario if we implant NoSQL it is not at all a problem as the data is represented in BSON. That particular customer contains an extra record that's it.
 
 ## Use cases of relational(SQL) and non relational(NoSQL) databases
-> If we have to maintain multiple relationship between the tables **Ex:** If the customer buy 2-3 products at a time we don't store everything in the same table like in the image ![Alt text](image.png) instead we split the data accross multiple tables like in the next image ![Alt text](image-1.png)
+> If we have to maintain multiple relationship between the tables **Ex:** If the customer buy 2-3 products at a time we don't store everything in the same table like in the image ![Alt text](image.png) instead we split the data accross multiple tables like in the next image ![Alt text](image-1.png). In the above cases SQL serves in a better way.
+
+>Instagram has the database for users and list fo their posts ![Alt text](image-2.png) in this case NoSQL is the best choise because it is much easy to map the posts.
+
+>As the final verdict the usage of relational(SQL) and non relational(NoSQL) databases depends on teh project.
 
 
 ## Swagger dependency
