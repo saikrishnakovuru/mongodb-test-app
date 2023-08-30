@@ -27,10 +27,10 @@ To find the URI added in application.properties go to mongo atlas
 login with mail id -> database-> under database click connect -> select drivers and URL will ge given
 modify the URI having <password> with correct password(saikrishna).
 
-> the hierarchy is as follows: within a MongoDB cluster, you can have multiple databases, each database can contain multiple collections, and each collection holds individual documents.
+> The hierarchy is as follows: within a MongoDB cluster, you can have multiple databases, each database can contain multiple collections, and each collection holds individual documents.
 
 ## Collection vs Document
 > Collection is a group of mongoDB documents, It's analogous to a table in relational databases.
-A document is a basic unit of data in MongoDB. It's similar to a row in a relational database, but MongoDB documents are stored in a flexible, JSON-like format known as BSON (Binary JSON).
+>A document is a basic unit of data in MongoDB. It's similar to a row in a relational database, but MongoDB documents are stored in a flexible, JSON-like format known as BSON (Binary JSON).
 --> we can assume Collecation as a table and Document as a row in that table.
         
