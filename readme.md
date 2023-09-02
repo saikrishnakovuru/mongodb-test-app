@@ -59,4 +59,51 @@ modify the URI having <password> with correct password(saikrishna).
 
 >A document is a basic unit of data in MongoDB. It's similar to a row in a relational database, but MongoDB documents are stored in a flexible, JSON-like format known as BSON (Binary JSON).
 --> we can assume Collecation as a table and Document as a row in that table.
-        
+
+## MongoDB Compass and MongoDB Atlas search
+> Compass in GUI for mongoDB, we are supposed to connect to cloud database in the Compass through an URI, look into appliction.properties file how it looks like and paste it in the compass.
+MongoDb creates multiple replicas of the databases to keep us safe when one of the server goes down.
+
+> A very good feature in mongoDB is we can search the documents.
+  click on databases --> collections --> search indexes(create a search index with default)
+  later craeting the indexes we can see the below ![Alt text](image-3.png) picture indication Index Fileds[Dynamic] --> when it is dynamic mongoDB indexes every document in the collection.
+
+> on the other hand we can index specific fields such as description, profile etc. This is addressed as static mapping.
+
+>The way we can test or search later creating the indexe is clicking on the search tab next to collecitons. search --> under search another subheading Actions click 3 dots and select edit with visual editor --> on the left side of the page select **search tester**.
+
+## Aggregation
+> Another important feature in MongoDB is aggregation lets understand it with an example --> if we have 200 records and only 50 records has the key word java but we want to limit the records to 5 having experience in assending order. we can achieve all the above sorts by adding "**STAGE**", each feature(experience in assending order) is a single stage. so, if we want multiple features of searching we have to add multiple stages.
+
+> In Aggregation we create pipeline.
+
+> let's add few indexes first index is we want to search with the key word
+``` java
+{
+  index: 'default',
+  text: {
+    query: 'java',
+    path: 'techs'
+  }
+}
+```
+> default is the index we created for the search, query is the keywork we wanted to search and path is please(in which fields i.e documents) where we want to search that particulat key word.If we want to search java in all the fields such as description, profile and every where, make hte path as list ['techs','desc'] rest of the fields if you want to search.
+
+Now, let's go ahead and add stage to sort based on experience
+``` java
+{
+  exp: -1 //field: sortOrder. 1 is ascending amd -1 is descending.
+}
+```
+
+Another stage we add here is limit
+> we are adding limit here is because after those above stages I got 7 records, however I want only 5. so, let's go ahead and add the stage limit
+
+``` java
+5 //number --> right away we can give the number.
+
+// later all the above stages we finally got 5 records as desired.
+```
+
+## Client side field encryption.
+> Another feature Mongo offers is field encryption. It encrypts the preferred fields that has sensitive content(such as phone number, SSN) and automatically decrypts when we fetch them back.
