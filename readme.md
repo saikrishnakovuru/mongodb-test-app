@@ -107,3 +107,51 @@ Another stage we add here is limit
 
 ## Client side field encryption.
 > Another feature Mongo offers is field encryption. It encrypts the preferred fields that has sensitive content(such as phone number, SSN) and automatically decrypts when we fetch them back.
+
+## Using Aggregation Pipeline
+> All the stages we added as part of arregation is called pipeline. We can right away use the code given by the mongoDB instead of writing our own java logic.
+
+``` java
+
+ private final MongoClient client;
+ private final MongoConverter converter;
+  
+  @GetMapping("/posts/{text}")
+  public List<Post> getSelectedPosts(@PathVariable String text) {
+
+    final List<Post> posts = new ArrayList<>();
+
+    MongoDatabase database = client.getDatabase("TestMongoDB");
+    MongoCollection<Document> collection = database.getCollection("JobPost");
+
+    AggregateIterable<Document> result = collection.aggregate(
+            Arrays.asList(
+                    new Document("$search",
+                            new Document("text",
+                                    new Document("query", text)
+                                            .append("path", Arrays.asList("techs", "desc", "profile")))),
+                    new Document("$sort", new Document("exp", -1L)),
+                    new Document("$limit", 5L))
+    );
+
+    result.forEach(doc -> posts.add(converter.read(Post.class, doc)));
+
+    return posts;
+  }
+  //Here is teh whole code given by the mongoDB with all the stages we added.
+```
+And also take a look at the java code that we are supposed to do if it has to be done by ourself.
+
+``` java
+@GetMapping("/posts/{text}")
+  public List<Post> getSelectedPosts(@PathVariable String text) {
+    return postRepository.findAll().stream()
+            .filter(post -> post.getDesc().equalsIgnoreCase(text)
+                    || post.getProfile().equalsIgnoreCase(text)
+                    || Arrays.stream(post.getTechs()).anyMatch(val -> val.equalsIgnoreCase(text)))
+            .sorted((post1, post2) -> Integer.compare(post2.getExp(), post1.getExp()))
+            .limit(5)
+            .collect(Collectors.toList());
+  }
+```
+Java code looks easy howEver, there may be chance that our code may go wrong which would never happen when we rightaway use the code given by mongoAtlas.
